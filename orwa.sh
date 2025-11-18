@@ -7,11 +7,11 @@ fetch_undetected_urls() {
   local api_key
 
   if [ $api_key_index -eq 1 ]; then
-    api_key="key-1"
+    api_key="15b39554c7cf7004057a725a063044183270249de6d352cbdea0e850025d3fe8"
   elif [ $api_key_index -eq 2 ]; then
-    api_key="key-2"
+    api_key="ca1f09c329d90dff59c5ae08e6e1c9caa7874fed6302c2b6118ea0f79abda869"
   else
-    api_key="key-3"
+    api_key="a9f7d7a2b0726280310a259fea88059125ccf7bed9b7be7f7d6cd76547eb23d5"
   fi
 
   local URL="https://www.virustotal.com/vtapi/v2/domain/report?apikey=$api_key&domain=$domain"
@@ -23,7 +23,9 @@ fetch_undetected_urls() {
     return
   fi
 
-  undetected_urls=$(echo "$response" | jq -r '.undetected_urls[][0]')
+  # Original: undetected_urls=$(echo "$response" | jq -r '.undetected_urls[][0]')
+  # Replaced with Python to avoid jq dependency:
+  undetected_urls=$(echo "$response" | python3 -c "import sys, json; data=json.load(sys.stdin); urls=[item[0] for item in data.get('undetected_urls', []) if item]; print('\n'.join(urls))" 2>/dev/null)
   if [[ -z "$undetected_urls" ]]; then
     echo -e "\033[1;33mNo undetected URLs found for domain: $domain\033[0m"
   else

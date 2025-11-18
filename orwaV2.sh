@@ -13,11 +13,11 @@ fetch_undetected_urls() {
   local api_key
 
   if [ $api_key_index -eq 1 ]; then
-    api_key="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    api_key="15b39554c7cf7004057a725a063044183270249de6d352cbdea0e850025d3fe8"
   elif [ $api_key_index -eq 2 ]; then
-    api_key="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    api_key="ca1f09c329d90dff59c5ae08e6e1c9caa7874fed6302c2b6118ea0f79abda869"
   else
-    api_key="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    api_key="a9f7d7a2b0726280310a259fea88059125ccf7bed9b7be7f7d6cd76547eb23d5"
   fi
 
   if is_ip "$input"; then
